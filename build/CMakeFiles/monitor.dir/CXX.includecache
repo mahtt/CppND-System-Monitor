@@ -6,18 +6,6 @@
 
 #IncludeRegexTransform: 
 
-../include/format.h
-string
--
-
-../include/linux_parser.h
-fstream
--
-regex
--
-string
--
-
 ../include/ncurses_display.h
 curses.h
 -
@@ -42,81 +30,21 @@ process.h
 processor.h
 ../include/processor.h
 
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/format.cpp
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/include/format.h
 string
 -
-format.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/format.h
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/linux_parser.cpp
-dirent.h
--
-unistd.h
--
-string
--
-vector
--
-linux_parser.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/linux_parser.h
 
 /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/main.cpp
 ncurses_display.h
 /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/ncurses_display.h
 system.h
 /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/system.h
+../test/test_system_monitor.cpp
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/test/test_system_monitor.cpp
 
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/ncurses_display.cpp
-curses.h
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/test/test_system_monitor.cpp
+cassert
 -
-chrono
--
-string
--
-thread
--
-vector
--
-format.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/format.h
-ncurses_display.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/ncurses_display.h
-system.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/system.h
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.cpp
-unistd.h
--
-cctype
--
-sstream
--
-string
--
-vector
--
-process.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.h
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/processor.cpp
-processor.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/processor.h
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/system.cpp
-unistd.h
--
-cstddef
--
-set
--
-string
--
-vector
--
-process.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.h
-processor.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/processor.h
-system.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/system.h
+../include/format.h
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/include/format.h
 

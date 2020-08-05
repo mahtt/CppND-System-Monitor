@@ -11,7 +11,9 @@ CMakeFiles/monitor.dir/src/main.cpp.o: ../include/ncurses_display.h
 CMakeFiles/monitor.dir/src/main.cpp.o: ../include/process.h
 CMakeFiles/monitor.dir/src/main.cpp.o: ../include/processor.h
 CMakeFiles/monitor.dir/src/main.cpp.o: ../include/system.h
+CMakeFiles/monitor.dir/src/main.cpp.o: ../include/format.h
 CMakeFiles/monitor.dir/src/main.cpp.o: ../src/main.cpp
+CMakeFiles/monitor.dir/src/main.cpp.o: ../test/test_system_monitor.cpp
 
 CMakeFiles/monitor.dir/src/ncurses_display.cpp.o: ../include/format.h
 CMakeFiles/monitor.dir/src/ncurses_display.cpp.o: ../include/ncurses_display.h

@@ -12,7 +12,9 @@ CMakeFiles/monitor.dir/src/main.cpp.o
  ../include/process.h
  ../include/processor.h
  ../include/system.h
+ /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/include/format.h
  /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/main.cpp
+ /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/test/test_system_monitor.cpp
 CMakeFiles/monitor.dir/src/ncurses_display.cpp.o
  ../include/format.h
  ../include/ncurses_display.h
