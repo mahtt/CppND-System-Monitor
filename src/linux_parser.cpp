@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <string>
 #include <vector>
+#include <cassert>
 
 #include "linux_parser.h"
 
@@ -35,13 +36,13 @@ string LinuxParser::OperatingSystem() {
 
 // DONE: An example of how to read data from the filesystem
 string LinuxParser::Kernel() {
-  string os, kernel;
+  string os, version, kernel;
   string line;
   std::ifstream stream(kProcDirectory + kVersionFilename);
   if (stream.is_open()) {
     std::getline(stream, line);
     std::istringstream linestream(line);
-    linestream >> os >> kernel;
+    linestream >> os >> version >> kernel;
   }
   return kernel;
 }
@@ -67,7 +68,29 @@ vector<int> LinuxParser::Pids() {
 }
 
 // TODO: Read and return the system memory utilization
-float LinuxParser::MemoryUtilization() { return 0.0; }
+float LinuxParser::MemoryUtilization() { 
+  int linesWithRelevantInfos = 4;
+	int lineCount = 0;
+	float totalMemory, freeMemory, availableMemory, buffers;
+	string line;
+	std::ifstream stream("/proc/meminfo");
+	while(stream.is_open() && lineCount < linesWithRelevantInfos){
+		std::getline(stream,line);
+		string category;
+		float value; 
+		std::istringstream linestream(line);
+		linestream >> category >> value;
+
+		if(category == "MemTotal:") totalMemory = value;
+		else if(category == "MemFree:") freeMemory = value;
+		else if(category == "MemAvailable:") availableMemory = value;
+		else if(category == "Buffers:") buffers = value;
+		lineCount++;
+	}
+	assert(totalMemory == 8032340); //specific to my system
+  
+
+  return (totalMemory - freeMemory) / totalMemory; }
 
 // TODO: Read and return the system uptime
 long LinuxParser::UpTime() { return 0; }
@@ -108,7 +131,9 @@ string LinuxParser::Uid(int pid[[maybe_unused]]) { return string(); }
 
 // TODO: Read and return the user associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::User(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::User(int pid[[maybe_unused]]) { 
+  
+  return string(); }
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
