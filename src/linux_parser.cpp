@@ -150,7 +150,14 @@ int LinuxParser::RunningProcesses() {
 
 // TODO: Read and return the command associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Command(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::Command(int pid[[maybe_unused]]) { 
+  string line;
+  std::ifstream stream(kProcDirectory + to_string(pid) + kCmdlineFilename);
+  if(stream.is_open()){
+    std::getline(stream,line);
+    return line;
+  }
+  return "Error in LinuxParser::Command()"; }
 
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
@@ -161,10 +168,7 @@ string LinuxParser::Ram(int pid) {
     std::getline(stream,line);
     std::istringstream linestream(line);
     linestream >> key >> ram;
-    if(key == "VmSize:"){
-      stream.close();
-      return ram;
-    }
+    if(key == "VmSize:") return ram;
   }
   return "Error LinuxParser::Ram()"; }
 
@@ -197,4 +201,18 @@ string LinuxParser::User(int pid) {
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::UpTime(int pid[[maybe_unused]]) { return 0; }
+long LinuxParser::UpTime(int pid) { 
+  string line;
+  long clk, upTime;
+  clk = sysconf(_SC_CLK_TCK);
+  int posOfUpTimeValue = 22;
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatFilename);
+  if(stream.is_open()){
+	  std::getline(stream,line);
+	  std::istringstream linestream(line);
+	  for(int i = 0; i < posOfUpTimeValue; i++) {
+		  linestream >> upTime;
+	}
+}
+	return upTime / clk; 
+  }
