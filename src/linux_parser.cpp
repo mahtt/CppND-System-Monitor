@@ -91,9 +91,6 @@ float LinuxParser::MemoryUtilization() {
     }
 		lineCount++;
 	}
-	assert(totalMemory == 8032340); //specific to my machine
-  
-
   return (totalMemory - freeMemory) / totalMemory; }
 
 // TODO: Read and return the system uptime
@@ -157,17 +154,46 @@ string LinuxParser::Command(int pid[[maybe_unused]]) { return string(); }
 
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Ram(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::Ram(int pid) { 
+  string line, key, ram;
+  std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
+  while(stream.is_open()){
+    std::getline(stream,line);
+    std::istringstream linestream(line);
+    linestream >> key >> ram;
+    if(key == "VmSize:"){
+      stream.close();
+      return ram;
+    }
+  }
+  return "Error LinuxParser::Ram()"; }
 
 // TODO: Read and return the user ID associated with a process
-// REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Uid(int pid[[maybe_unused]]) { return string(); }
+string LinuxParser::Uid(int pid) { 
+  string line, key, uid;
+  std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatusFilename);
+  while(stream.is_open()){
+    std::getline(stream,line);
+    std::istringstream linestream(line);
+    linestream >> key >> uid; 
+    if(key == "Uid:") break;
+  }
+  return uid; }
 
 // TODO: Read and return the user associated with a process
-// REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::User(int pid[[maybe_unused]]) { 
-  
-  return string(); }
+string LinuxParser::User(int pid) { 
+  string line, user, dump, userid; 
+  string uid = LinuxParser::Uid(pid);
+  std::ifstream stream(kPasswordPath);
+  while(stream.is_open()){
+    std::getline(stream,line);
+    std::replace(line.begin(), line.end(), ':', ' ');
+    std::istringstream linestream(line);
+    linestream >> user >> dump >> userid;
+    if(userid == uid) return user;
+  }
+
+  return "ErrorGettingUser"; }
 
 // TODO: Read and return the uptime of a process
 // REMOVE: [[maybe_unused]] once you define the function
