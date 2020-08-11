@@ -119,7 +119,24 @@ long LinuxParser::ActiveJiffies() { return 0; }
 long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return CPU utilization
-vector<string> LinuxParser::CpuUtilization() { return {}; }
+float LinuxParser::CpuUtilization(int pid) { 
+  string line, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q;
+  vector<int> times;
+  std::ifstream filestream(kProcDirectory + std::to_string(pid) + kStatFilename);
+
+  if(filestream.is_open()){
+    std::getline(filestream, line);
+    std::istringstream linestream(line);
+    linestream >> a >> b >> c >> d >> e >> f >> g >> h >> i >> j >> k >> l >> m >> n >> o >> p >> q;
+    times.push_back(std::stoi(n));
+    times.push_back(std::stoi(o));
+    times.push_back(std::stoi(p));
+    times.push_back(std::stoi(q));
+  }
+  int total_time = times[0] + times[1] + times[2] + times[3];
+  int seconds = LinuxParser::UpTime() - (LinuxParser::UpTime(pid) / sysconf(_SC_CLK_TCK));
+  float cpu_usage = (((float)total_time/(float)sysconf(_SC_CLK_TCK))/(float)seconds);
+  return cpu_usage; }
 
 // TODO: Read and return the total number of processes
 int LinuxParser::TotalProcesses() { 
@@ -150,7 +167,7 @@ int LinuxParser::RunningProcesses() {
 
 // TODO: Read and return the command associated with a process
 // REMOVE: [[maybe_unused]] once you define the function
-string LinuxParser::Command(int pid[[maybe_unused]]) { 
+string LinuxParser::Command(int pid) { 
   string line;
   std::ifstream stream(kProcDirectory + to_string(pid) + kCmdlineFilename);
   if(stream.is_open()){
@@ -162,13 +179,17 @@ string LinuxParser::Command(int pid[[maybe_unused]]) {
 // TODO: Read and return the memory used by a process
 // REMOVE: [[maybe_unused]] once you define the function
 string LinuxParser::Ram(int pid) { 
-  string line, key, ram;
-  std::ifstream stream(kProcDirectory + to_string(pid) + kStatusFilename);
-  while(stream.is_open()){
-    std::getline(stream,line);
-    std::istringstream linestream(line);
-    linestream >> key >> ram;
-    if(key == "VmSize:") return ram;
+  string line, key, value;
+  std::ifstream filestream(kProcDirectory + std::to_string(pid) + kStatusFilename);
+  if(filestream.is_open()){
+    while(std::getline(filestream, line)){
+      std::istringstream linestream(line);  
+      linestream >> key >> value;
+      if(key == "VmSize:"){
+        int mb = std::stoi(value) / 1024;
+        return std::to_string(mb);
+      }
+    }
   }
   return "Error LinuxParser::Ram()"; }
 
