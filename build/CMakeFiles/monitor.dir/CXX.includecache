@@ -14,23 +14,19 @@ regex
 string
 -
 
-../include/process.h
-string
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/linux_parser.cpp
+dirent.h
 -
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.cpp
 unistd.h
--
-cctype
--
-sstream
 -
 string
 -
 vector
 -
-process.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.h
+cassert
+-
+iostream
+-
 linux_parser.h
 /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/linux_parser.h
 
