@@ -18,36 +18,12 @@ string
 string
 -
 
-../include/processor.h
-
-../include/system.h
-string
--
-vector
--
-process.h
-../include/process.h
-processor.h
-../include/processor.h
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/processor.cpp
-processor.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/processor.h
-string
--
-fstream
--
-iostream
--
-regex
--
-
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/system.cpp
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.cpp
 unistd.h
 -
-cstddef
+cctype
 -
-set
+sstream
 -
 string
 -
@@ -55,10 +31,6 @@ vector
 -
 process.h
 /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.h
-processor.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/processor.h
-system.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/system.h
 linux_parser.h
 /home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/linux_parser.h
 
