@@ -6,7 +6,6 @@
 
 using std::string;
 
-// TODO: Return the aggregate CPU utilization
 float Processor::Utilization() { 
     int user, nice, system, idle, iowait,irq, softirq, steal, guest, guest_nice, nonidle,total,totald,idled;
 	string line, cpu;
