@@ -119,24 +119,20 @@ long LinuxParser::ActiveJiffies() { return 0; }
 long LinuxParser::IdleJiffies() { return 0; }
 
 // TODO: Read and return CPU utilization
-float LinuxParser::CpuUtilization(int pid) { 
-  string line, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q;
-  vector<int> times;
+vector<string> LinuxParser::CpuUtilization(int pid) { 
+  string line, x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, x11, x12, x13, val1, val2, val3, val4;
+  vector<string> times;
   std::ifstream filestream(kProcDirectory + std::to_string(pid) + kStatFilename);
-
   if(filestream.is_open()){
     std::getline(filestream, line);
     std::istringstream linestream(line);
-    linestream >> a >> b >> c >> d >> e >> f >> g >> h >> i >> j >> k >> l >> m >> n >> o >> p >> q;
-    times.push_back(std::stoi(n));
-    times.push_back(std::stoi(o));
-    times.push_back(std::stoi(p));
-    times.push_back(std::stoi(q));
+    linestream >> x1 >> x2 >> x3 >> x4 >> x5 >> x6 >> x7 >> x8 >> x9 >> x10 >> x11 >> x12 >> x13 >> val1 >> val2 >> val3 >> val4;
+    times.push_back(val1);
+    times.push_back(val2);
+    times.push_back(val3);
+    times.push_back(val4);
   }
-  int total_time = times[0] + times[1] + times[2] + times[3];
-  int seconds = LinuxParser::UpTime() - (LinuxParser::UpTime(pid) / sysconf(_SC_CLK_TCK));
-  float cpu_usage = (((float)total_time/(float)sysconf(_SC_CLK_TCK))/(float)seconds);
-  return cpu_usage; }
+  return times; }
 
 // TODO: Read and return the total number of processes
 int LinuxParser::TotalProcesses() { 
