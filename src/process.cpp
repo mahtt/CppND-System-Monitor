@@ -19,7 +19,7 @@ int Process::Pid() { return pid_; }
 float Process::CpuUtilization() { 
     vector<string> times = LinuxParser::CpuUtilization(pid_); 
     int total_time = std::stoi(times[0]) + std::stoi(times[1]) + std::stoi(times[2]) + std::stoi(times[3]);
-    int seconds = LinuxParser::UpTime() - (LinuxParser::UpTime(pid_) / sysconf(_SC_CLK_TCK));
+    const int seconds = LinuxParser::UpTime(pid_);
     float cpu_usage = (((float)total_time/(float)sysconf(_SC_CLK_TCK))/(float)seconds);
     return cpu_usage;}
 

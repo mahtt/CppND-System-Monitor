@@ -6,13 +6,31 @@
 
 #IncludeRegexTransform: 
 
-../include/format.h
+../include/linux_parser.h
+fstream
+-
+regex
+-
 string
 -
 
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/format.cpp
+../include/process.h
 string
 -
-format.h
-/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/format.h
+
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.cpp
+unistd.h
+-
+cctype
+-
+sstream
+-
+string
+-
+vector
+-
+process.h
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/process.h
+linux_parser.h
+/home/martin/Documents/DEV/C++ Nanodegree/System-Monitor/src/linux_parser.h
 
